@@ -1,12 +1,12 @@
 {
   "name": "binance-api",
   "version": "1.0.0",
-  "description": "",
   "main": "dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc"
   },
-  "author": "",
+  "author": "Eugene Osadchyi (https://github.com/eugeneosadchyi)",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^18.15.13",
@@ -16,5 +16,10 @@
   },
   "dependencies": {
     "ws": "^8.13.0"
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eugeneosadchyi/binance-api"
   }
 }
