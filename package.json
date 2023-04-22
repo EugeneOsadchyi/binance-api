@@ -1,11 +1,11 @@
 {
   "name": "@eugene.osadchyi/binance-api",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "publish": "npm run build && npm publish --access public"
+    "publish": "npm publish --access public"
   },
   "author": "Eugene Osadchyi (https://github.com/eugeneosadchyi)",
   "license": "ISC",
