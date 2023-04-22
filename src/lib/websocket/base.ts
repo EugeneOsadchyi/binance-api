@@ -53,7 +53,6 @@ export default abstract class WebSocketBase extends EventEmitter {
   }
 
   protected onClose(code: number, reason: Buffer) {
-    console.log('WebSocket closed', code, reason.toString());
     this.emit('close', code, reason.toString());
 
     if (code === this.CONNECTION_CLOSED_BY_APP) return;

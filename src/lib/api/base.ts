@@ -28,8 +28,6 @@ export default abstract class Base {
       url = `${url}?${queryString}`;
     }
 
-    console.log('Requesting', url, 'with options', options);
-
     try {
       const response = await fetch(url, requestInit);
 
@@ -41,7 +39,6 @@ export default abstract class Base {
 
       return data;
     } catch (error) {
-      console.error('Request error:', error);
       throw error;
     }
   }

@@ -34,7 +34,6 @@ export default class MarketStreams extends WebSocketBase {
 
     this.websocketMessageIdToSubscription.set(this.websocketId, payload);
 
-    console.log('Subscribing to', path, 'with payload', payload);
     this.sendMessage(payload);
   }
 
