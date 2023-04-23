@@ -1,7 +1,7 @@
 type Timestamp = number;
 type Side = 'BUY' | 'SELL';
-type OrderType = "LIMIT" | "LIMIT_MAKER" | "MARKET" | "STOP_LOSS" | "STOP_LOSS_LIMIT" | "TAKE_PROFIT" | "TAKE_PROFIT_LIMIT";
-type OrderStatus = "NEW" | "PARTIALLY_FILLED" | "FILLED" | "CANCELED" | "PENDING_CANCEL" | "REJECTED" | "EXPIRED" | "EXPIRED_IN_MATCH";
+type OrderType = 'LIMIT' | 'LIMIT_MAKER' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT';
+type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
 type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
 type OrderId = number;
 type ClientOrderId = string;
@@ -21,7 +21,7 @@ export interface BookTickerUpdateEvent {
 }
 
 export interface AccountUpdateEvent {
-  e: "outboundAccountPosition"; //Event type
+  e: 'outboundAccountPosition'; //Event type
   E: Timestamp;                 //Event Time
   u: Timestamp;                 //Time of last account update
   B: [                          //Balances Array
@@ -34,7 +34,7 @@ export interface AccountUpdateEvent {
 }
 
 export interface BalanceUpdateEvent {
-  e: "balanceUpdate";           //Event Type
+  e: 'balanceUpdate';           //Event Type
   E: Timestamp;                 //Event Time
   a: Asset;                    //Asset
   d: string;                    //Balance Delta
@@ -42,7 +42,7 @@ export interface BalanceUpdateEvent {
 }
 
 export interface OrderUpdateEvent {
-  e: "executionReport";         // Event type
+  e: 'executionReport';         // Event type
   E: Timestamp;                 // Event time
   s: Symbol;                    // Symbol
   c: ClientOrderId;             // Client order ID
@@ -54,15 +54,15 @@ export interface OrderUpdateEvent {
   P: Price;                     // Stop price
   F: Quantity;                  // Iceberg quantity
   g: -1,                        // OrderListId
-  C: "",                        // Original client order ID; This is the ID of the order being canceled
+  C: '',                        // Original client order ID; This is the ID of the order being canceled
   x: OrderType,                 // Current execution type
   X: OrderStatus,               // Current order status
-  r: "NONE",                    // Order reject reason; will be an error code.
+  r: 'NONE',                    // Order reject reason; will be an error code.
   i: OrderId,                   // Order ID
   l: Quantity,                  // Last executed quantity
   z: Quantity,                  // Cumulative filled quantity
   L: Price,                     // Last executed price
-  n: "0";                       // Commission amount
+  n: '0';                       // Commission amount
   N: null;                      // Commission asset
   T: Timestamp;                 // Transaction time
   t: -1;                        // Trade ID

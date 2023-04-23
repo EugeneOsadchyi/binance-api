@@ -1,4 +1,4 @@
-import Base from '../../base';
+import Base from '../base';
 
 export default class UserDataStream extends Base {
   public createListenKey(): Promise<{ listenKey: string }> {

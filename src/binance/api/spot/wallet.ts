@@ -1,5 +1,5 @@
-import Base from '../../base';
-import type { SpotAssetDetail, SpotUserAsset } from '../../types';
+import Base from '../base';
+import type { SpotAssetDetail, SpotUserAsset } from '../types';
 
 export default class Wallet extends Base {
   public getAccountStatus() {

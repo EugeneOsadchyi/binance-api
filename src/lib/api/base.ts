@@ -1,4 +1,4 @@
-import { buildQueryString } from "../utils";
+import { buildQueryString } from '../utils';
 
 export interface Options {
   headers?: object;

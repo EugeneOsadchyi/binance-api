@@ -1,4 +1,7 @@
-import { Market, Trade, UserDataStream, Wallet } from './modules';
+import Market from './spot/market';
+import Trade from './spot/trade';
+import UserDataStream from './spot/userDataStream';
+import Wallet from './spot/wallet';
 
 export default class Spot {
   public market: Market;

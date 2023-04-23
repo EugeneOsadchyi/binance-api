@@ -1,5 +1,5 @@
-import WebSocketBase from "./base";
-import Spot from "../api/spot/spot";
+import WebSocketBase from './base';
+import Spot from '../api/spot';
 
 const PRODUCTION_URL = 'wss://stream.binance.com:9443/ws';
 const TESTNET_URL = 'wss://testnet.binance.vision/ws';
