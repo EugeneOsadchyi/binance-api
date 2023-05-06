@@ -1,11 +1,11 @@
 
-type Timestamp = number;
-type Side = 'BUY' | 'SELL';
-type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
-type NewOrderResponseType = 'ACK' | 'RESULT' | 'FULL';
-type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
-type OrderType = 'LIMIT' | 'LIMIT_MAKER' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT';
-type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
+export type Timestamp = number;
+export type Side = 'BUY' | 'SELL';
+export type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
+export type NewOrderResponseType = 'ACK' | 'RESULT' | 'FULL';
+export type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
+export type OrderType = 'LIMIT' | 'LIMIT_MAKER' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT';
+export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
 
 export interface OrderParams {
   symbol: string;
@@ -25,7 +25,7 @@ export interface OrderParams {
   selfTradePreventionMode?: SelfTradePreventionMode;
 }
 
-type CancelOrderRestrictions = 'ONLY_NEW' | 'ONLY_PARTIALLY_FILLED';
+export type CancelOrderRestrictions = 'ONLY_NEW' | 'ONLY_PARTIALLY_FILLED';
 
 export interface CancelOrderParams {
   symbol: string;
@@ -35,7 +35,7 @@ export interface CancelOrderParams {
   cancelRestrictions?: CancelOrderRestrictions;
 }
 
-type CancelReplaceMode = 'STOP_ON_FAILURE' | 'ALLOW_FAILURE';
+export type CancelReplaceMode = 'STOP_ON_FAILURE' | 'ALLOW_FAILURE';
 
 export interface ReplaceOrderParams extends OrderParams {
   cancelReplaceMode: CancelReplaceMode;
@@ -76,7 +76,7 @@ export interface OpenOrder {
   'selfTradePreventionMode': SelfTradePreventionMode
 }
 
-interface SpotExchangeInfoSymbol {
+export interface SpotExchangeInfoSymbol {
   symbol: string;
   status: 'TRADING';
   baseAsset: string;
