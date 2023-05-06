@@ -17,9 +17,6 @@ export default class UserDataStreams extends WebSocketBase {
 
     this.binanceSpotClient = binanceSpotClient;
     this.isTestnet = isTestnet;
-
-    process.on('SIGINT', () => this.unsubscribe());
-    process.on('SIGTERM', () => this.unsubscribe());
   }
 
   public getBaseURL(): string {
