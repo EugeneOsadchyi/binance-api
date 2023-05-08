@@ -54,26 +54,26 @@ export interface AllOrdersParams {
 }
 
 export interface OpenOrder {
-  'symbol': string,
-  'orderId': number,
-  'orderListId': -1, //Unless OCO, the value will always be -1
-  'clientOrderId': string,
-  'price': string,
-  'origQty': string,
-  'executedQty': string,
-  'cummulativeQuoteQty': string,
-  'status': 'NEW',
-  'timeInForce': TimeInForce,
-  'type': OrderType,
-  'side': Side,
-  'stopPrice': string,
-  'icebergQty': string,
-  'time': Timestamp,
-  'updateTime': Timestamp,
-  'isWorking': true,
-  'workingTime': Timestamp,
-  'origQuoteOrderQty': string,
-  'selfTradePreventionMode': SelfTradePreventionMode
+  symbol: string,
+  orderId: number,
+  orderListId: -1, //Unless OCO, the value will always be -1
+  clientOrderId: string,
+  price: string,
+  origQty: string,
+  executedQty: string,
+  cummulativeQuoteQty: string,
+  status: 'NEW',
+  timeInForce: TimeInForce,
+  type: OrderType,
+  side: Side,
+  stopPrice: string,
+  icebergQty: string,
+  time: Timestamp,
+  updateTime: Timestamp,
+  isWorking: true,
+  workingTime: Timestamp,
+  origQuoteOrderQty: string,
+  selfTradePreventionMode: SelfTradePreventionMode
 }
 
 export interface SpotExchangeInfoSymbol {

@@ -61,6 +61,7 @@ export default class BinanceBase extends Base {
       headers: {
         'X-MBX-APIKEY': this.apiKey,
       },
+      query: buildQueryString(params),
     });
   }
 }
