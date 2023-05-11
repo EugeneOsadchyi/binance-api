@@ -1,15 +1,16 @@
 
 export type Timestamp = number;
-export type Side = 'BUY' | 'SELL';
+export type OrderSide = 'BUY' | 'SELL';
 export type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
-export type NewOrderResponseType = 'ACK' | 'RESULT' | 'FULL';
+export type NewOrderResponseType = 'ACK' | 'RESULT';
 export type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
-export type OrderType = 'LIMIT' | 'LIMIT_MAKER' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT';
-export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
-
+export type OrderType = 'LIMIT' | 'MARKET' | 'STOP' | 'STOP_MARKET' | 'TAKE_PROFIT' | 'TAKE_PROFIT_MARKET' | 'TRAILING_STOP_MARKET';
+export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'REJECTED' | 'EXPIRED';
+export type WorkingType = 'MARK_PRICE' | 'CONTRACT_PRICE';
+export type PositionSide = 'BOTH' | 'LONG' | 'SHORT';
 export interface OrderParams {
   symbol: string;
-  side: Side;
+  side: OrderSide;
   type: OrderType;
   timeInForce: TimeInForce;
   quantity?: string;
@@ -25,6 +26,32 @@ export interface OrderParams {
   selfTradePreventionMode?: SelfTradePreventionMode;
 }
 
+export interface NewOrderResponse {
+  clientOrderId: string;
+  cumQty: string;
+  cumQuote: string;
+  executedQty: string;
+  orderId: number;
+  avgPrice: string;
+  origQty: string;
+  price: string;
+  reduceOnly: false;
+  side: OrderSide;
+  positionSide: PositionSide;
+  status: OrderStatus;
+  stopPrice: string;          // please ignore when order type is TRAILING_STOP_MARKET
+  closePosition: boolean;     // if Close-All
+  symbol: string;
+  timeInForce: TimeInForce;
+  type: OrderType;
+  origType: OrderType;
+  activatePrice: string;      // activation price, only return with TRAILING_STOP_MARKET order
+  priceRate: string;          // callback rate, only return with TRAILING_STOP_MARKET order
+  updateTime: Timestamp;
+  workingType: WorkingType;
+  priceProtect: false;
+}
+
 export type CancelOrderRestrictions = 'ONLY_NEW' | 'ONLY_PARTIALLY_FILLED';
 
 export interface CancelOrderParams {
@@ -33,6 +60,31 @@ export interface CancelOrderParams {
   origClientOrderId?: string;
   newClientOrderId?: string;
   cancelRestrictions?: CancelOrderRestrictions;
+}
+
+export interface CancelOrderResponse {
+  clientOrderId: string;
+  cumQty: string;
+  cumQuote: string;
+  executedQty: string;
+  orderId: number;
+  origQty: string;
+  origType: OrderType;
+  price: string;
+  reduceOnly: boolean;
+  side: OrderSide;
+  positionSide: PositionSide;
+  status: OrderStatus;
+  stopPrice: string;                // please ignore when order type is TRAILING_STOP_MARKET
+  closePosition: boolean;           // if Close-All
+  symbol: string;
+  timeInForce: TimeInForce;
+  type: OrderType;
+  activatePrice: string;            // activation price, only return with TRAILING_STOP_MARKET order
+  priceRate: string;                // callback rate, only return with TRAILING_STOP_MARKET order
+  updateTime: Timestamp;
+  workingType: WorkingType;
+  priceProtect: false;              // if conditional order trigger is protected
 }
 
 export type CancelReplaceMode = 'STOP_ON_FAILURE' | 'ALLOW_FAILURE';
@@ -54,26 +106,26 @@ export interface AllOrdersParams {
 }
 
 export interface OpenOrder {
-  symbol: string,
-  orderId: number,
-  orderListId: -1, //Unless OCO, the value will always be -1
-  clientOrderId: string,
-  price: string,
-  origQty: string,
-  executedQty: string,
-  cummulativeQuoteQty: string,
-  status: 'NEW',
-  timeInForce: TimeInForce,
-  type: OrderType,
-  side: Side,
-  stopPrice: string,
-  icebergQty: string,
-  time: Timestamp,
-  updateTime: Timestamp,
-  isWorking: true,
-  workingTime: Timestamp,
-  origQuoteOrderQty: string,
-  selfTradePreventionMode: SelfTradePreventionMode
+  symbol: string;
+  orderId: number;
+  orderListId: -1; //Unless OCO, the value will always be -1
+  clientOrderId: string;
+  price: string;
+  origQty: string;
+  executedQty: string;
+  cummulativeQuoteQty: string;
+  status: 'NEW';
+  timeInForce: TimeInForce;
+  type: OrderType;
+  side: OrderSide;
+  stopPrice: string;
+  icebergQty: string;
+  time: Timestamp;
+  updateTime: Timestamp;
+  isWorking: true;
+  workingTime: Timestamp;
+  origQuoteOrderQty: string;
+  selfTradePreventionMode: SelfTradePreventionMode;
 }
 
 export interface SpotExchangeInfoSymbol {

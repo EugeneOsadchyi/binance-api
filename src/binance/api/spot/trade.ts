@@ -1,5 +1,5 @@
 import Base from '../base';
-import type { AllOrdersParams, CancelOrderParams, OrderParams, ReplaceOrderParams, OpenOrder } from '../types';
+import type { AllOrdersParams, CancelOrderParams, OrderParams, ReplaceOrderParams, OpenOrder, NewOrderResponse, CancelOrderResponse } from '../types';
 
 export default class Wallet extends Base {
   public getAccountInfo() {
@@ -10,11 +10,11 @@ export default class Wallet extends Base {
     return this.signedRequest('POST', '/api/v3/order/test', order);
   }
 
-  public newOrder(order: OrderParams) {
+  public newOrder(order: OrderParams): Promise<NewOrderResponse> {
     return this.signedRequest('POST', '/api/v3/order', order);
   }
 
-  public cancelOrder(params: CancelOrderParams) {
+  public cancelOrder(params: CancelOrderParams): Promise<CancelOrderResponse> {
     return this.signedRequest('DELETE', '/api/v3/order', params);
   }
 
