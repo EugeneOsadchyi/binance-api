@@ -8,11 +8,12 @@ export type OrderType = 'LIMIT' | 'MARKET' | 'STOP' | 'STOP_MARKET' | 'TAKE_PROF
 export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'REJECTED' | 'EXPIRED';
 export type WorkingType = 'MARK_PRICE' | 'CONTRACT_PRICE';
 export type PositionSide = 'BOTH' | 'LONG' | 'SHORT';
+
 export interface OrderParams {
   symbol: string;
   side: OrderSide;
   type: OrderType;
-  timeInForce: TimeInForce;
+  timeInForce?: TimeInForce;
   quantity?: string;
   quoteOrderQty?: number;
   price?: string;
@@ -22,7 +23,7 @@ export interface OrderParams {
   stopPrice?: number;
   trailingDelta?: number;
   icebergQty?: number;
-  newOrderRespType: NewOrderResponseType;
+  newOrderRespType?: NewOrderResponseType;
   selfTradePreventionMode?: SelfTradePreventionMode;
 }
 
