@@ -1,4 +1,4 @@
-import WebSocketBase from './base';
+import WebSocketBase from '../../lib/websocket/base';
 import Spot from '../api/spot';
 
 const PRODUCTION_URL = 'wss://stream.binance.com:9443/ws';

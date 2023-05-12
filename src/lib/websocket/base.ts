@@ -19,9 +19,6 @@ export default abstract class WebSocketBase extends EventEmitter {
     this.ws.on('error', this.onError.bind(this));
     this.ws.on('message', this.onMessage.bind(this));
     this.ws.on('ping', this.onPing.bind(this));
-
-    process.on('SIGINT', () => this.close());
-    process.on('SIGTERM', () => this.close());
   }
 
   protected disconnect() {
