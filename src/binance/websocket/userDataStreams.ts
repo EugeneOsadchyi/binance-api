@@ -25,45 +25,41 @@ export default class UserDataStreams extends WebSocketBase {
 
   public async subscribe() {
     const { listenKey } = await this.binanceSpotClient.userDataStream.createListenKey();
+
     this.listenKey = listenKey;
-
-    this.scheduleAutoRenewListenKey();
-
-    super.connect();
+    this.connect();
   }
 
   public unsubscribe() {
     this.listenKey = undefined;
-
-    if (this.listenKeyRenewInterval) {
-      clearInterval(this.listenKeyRenewInterval);
-
-      this.listenKeyRenewInterval = undefined;
-    }
-
     this.disconnect();
   }
 
   private scheduleAutoRenewListenKey() {
     this.listenKeyRenewInterval = setInterval(async () => {
-      await this.binanceSpotClient.userDataStream.keepAliveListenKey(this.listenKey!);
-      this.updateListenKey(this.listenKey!);
+      if (!this.listenKey) {
+        throw new Error('listenKey is not set, but auto renew was scheduled');
+      }
+
+      await this.binanceSpotClient.userDataStream.keepAliveListenKey(this.listenKey);
     }, LISTEN_KEY_RENEW_INTERVAL);
   }
 
-  private updateListenKey(listenKey: string) {
-    this.listenKey = listenKey;
-    this.reconnect();
+  private clearAutoRenewListenKey(): void {
+    if (!this.listenKeyRenewInterval) return;
+
+    clearInterval(this.listenKeyRenewInterval);
+
+    this.listenKeyRenewInterval = undefined;
   }
 
-  private reconnect() {
-    this.close();
-    this.connect();
+  protected onOpen() {
+    super.onOpen();
+    this.scheduleAutoRenewListenKey();
   }
 
   protected onClose(code: number, reason: Buffer): void {
+    this.clearAutoRenewListenKey();
     super.onClose(code, reason);
-
-    if (code === this.CONNECTION_CLOSED_BY_APP) return;
   }
 }

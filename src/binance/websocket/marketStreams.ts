@@ -95,8 +95,6 @@ export default class MarketStreams extends WebSocketBase {
     if (code === this.CONNECTION_CLOSED_BY_APP) {
       this.subscriptions.clear();
       this.websocketMessageIdToSubscription.clear();
-
-      return;
     }
   }
 }
