@@ -1,3 +1,5 @@
+import ApiError from '../../errors/ApiError';
+import UnknownError from '../../errors/UnknownError';
 import { buildQueryString } from '../utils';
 
 export interface Options {
@@ -46,21 +48,21 @@ export default abstract class Base {
     responseText = responseText.trim();
     const [, responseTitle] = responseText.match(/<title>(.*?)<\/title>/) || [];
     if (responseTitle) {
-      throw new Error(responseTitle);
+      throw new ApiError(responseTitle);
     }
 
     const message = responseJSON?.msg;
     const code = responseJSON?.code;
 
-    if (message) {
-      throw new Error(`${message}. Code=${code}`);
+    if (message || code) {
+      throw new ApiError(message + ` Code: ${code}`);
     }
 
     if (responseText) {
-      throw new Error(responseText);
+      throw new ApiError(responseText);
     }
 
-    throw new Error(`Request failed. status=${response.status}`);
+    throw new UnknownError(`Request failed. status=${response.status}`);
   }
 
   abstract getBaseURL(): string;
