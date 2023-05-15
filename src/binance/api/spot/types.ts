@@ -27,8 +27,7 @@ export interface OrderParams {
   selfTradePreventionMode?: SelfTradePreventionMode;
 }
 
-
-export type NewOrderResponse = NewOrderOrderResponseAck | NewOrderResponseFull;
+export type NewOrderResponse = NewOrderOrderResponseAck | NewOrderOrderResponseResult | NewOrderResponseFull;
 
 export interface NewOrderOrderResponseAck {
   symbol: string;
@@ -54,32 +53,6 @@ export interface NewOrderOrderResponseResult {
   side: OrderSide;
   workingTime: Timestamp;
   selfTradePreventionMode: SelfTradePreventionMode;
-}
-
-export interface NewOrderResponseFull {
-  clientOrderId: string;
-  cumQty: string;
-  cumQuote: string;
-  executedQty: string;
-  orderId: number;
-  avgPrice: string;
-  origQty: string;
-  price: string;
-  reduceOnly: false;
-  side: OrderSide;
-  positionSide: PositionSide;
-  status: OrderStatus;
-  stopPrice: string;          // please ignore when order type is TRAILING_STOP_MARKET
-  closePosition: boolean;     // if Close-All
-  symbol: string;
-  timeInForce: TimeInForce;
-  type: OrderType;
-  origType: OrderType;
-  activatePrice: string;      // activation price, only return with TRAILING_STOP_MARKET order
-  priceRate: string;          // callback rate, only return with TRAILING_STOP_MARKET order
-  updateTime: Timestamp;
-  workingType: WorkingType;
-  priceProtect: false;
 }
 
 export interface NewOrderResponseFull {
