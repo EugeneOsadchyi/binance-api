@@ -1,11 +1,11 @@
 
 export type Timestamp = number;
 export type OrderSide = 'BUY' | 'SELL';
-export type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
-export type NewOrderResponseType = 'ACK' | 'RESULT';
+export type TimeInForce = 'GTC' | 'IOC' | 'FOK';
+export type NewOrderResponseType = 'ACK' | 'RESULT' | 'FULL';
 export type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
-export type OrderType = 'LIMIT' | 'MARKET' | 'STOP' | 'STOP_MARKET' | 'TAKE_PROFIT' | 'TAKE_PROFIT_MARKET' | 'TRAILING_STOP_MARKET';
-export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'REJECTED' | 'EXPIRED';
+export type OrderType = 'LIMIT' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT' | 'LIMIT_MAKER';
+export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
 export type WorkingType = 'MARK_PRICE' | 'CONTRACT_PRICE';
 export type PositionSide = 'BOTH' | 'LONG' | 'SHORT';
 
@@ -27,7 +27,36 @@ export interface OrderParams {
   selfTradePreventionMode?: SelfTradePreventionMode;
 }
 
-export interface NewOrderResponse {
+
+export type NewOrderResponse = NewOrderOrderResponseAck | NewOrderResponseFull;
+
+export interface NewOrderOrderResponseAck {
+  symbol: string;
+  orderId: number;
+  orderListId: -1, //Unless OCO, value will be -1
+  clientOrderId: string;
+  transactTime: Timestamp;
+}
+
+export interface NewOrderOrderResponseResult {
+  symbol: string;
+  orderId: number;
+  orderListId: -1; //Unless OCO, value will be -1
+  clientOrderId: string;
+  transactTime: Timestamp;
+  price: string;
+  origQty: string;
+  executedQty: string;
+  cummulativeQuoteQty: string;
+  status: OrderStatus;
+  timeInForce: TimeInForce;
+  type: OrderType;
+  side: OrderSide;
+  workingTime: Timestamp;
+  selfTradePreventionMode: SelfTradePreventionMode;
+}
+
+export interface NewOrderResponseFull {
   clientOrderId: string;
   cumQty: string;
   cumQuote: string;
@@ -51,6 +80,33 @@ export interface NewOrderResponse {
   updateTime: Timestamp;
   workingType: WorkingType;
   priceProtect: false;
+}
+
+export interface NewOrderResponseFull {
+  symbol: string;
+  orderId: number;
+  orderListId: -1; //Unless OCO, value will be -1
+  clientOrderId: string,
+  transactTime: Timestamp;
+  price: string;
+  origQty: string;
+  executedQty: string;
+  cummulativeQuoteQty: string;
+  status: OrderStatus;
+  timeInForce: TimeInForce;
+  type: OrderType;
+  side: OrderSide;
+  workingTime: Timestamp;
+  selfTradePreventionMode: SelfTradePreventionMode;
+  fills: NewOrderResponseFill[]
+}
+
+interface NewOrderResponseFill {
+  price: string;
+  qty: string;
+  commission: string;
+  commissionAsset: string;
+  tradeId: number;
 }
 
 export type CancelOrderRestrictions = 'ONLY_NEW' | 'ONLY_PARTIALLY_FILLED';

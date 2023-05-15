@@ -1,5 +1,5 @@
 import Base from '../base';
-import type { AllOrdersParams, CancelOrderParams, OrderParams, ReplaceOrderParams, OpenOrder, NewOrderResponse, CancelOrderResponse } from '../types';
+import type { AllOrdersParams, CancelOrderParams, OrderParams, ReplaceOrderParams, OpenOrder, NewOrderResponse, CancelOrderResponse } from './types';
 
 export default class Wallet extends Base {
   public getAccountInfo() {
