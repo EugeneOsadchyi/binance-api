@@ -1,7 +1,14 @@
 import WebSocket from 'ws';
 import { EventEmitter } from 'events';
 
-export default abstract class WebSocketBase extends EventEmitter {
+interface WebSocketBase {
+  on(event: 'open', listener: () => void): this;
+  on(event: 'close', listener: (code: number, reason: Buffer) => void): this;
+  on(event: 'error', listener: (error: Error) => void): this;
+  on(event: 'message', listener: (message: any) => void): this;
+}
+
+abstract class WebSocketBase extends EventEmitter {
   protected ws?: WebSocket;
   protected reconnectInterval: number = 500;
   protected reconnectAttempts: number = 3;
@@ -77,3 +84,5 @@ export default abstract class WebSocketBase extends EventEmitter {
     this.ws!.ping();
   }
 }
+
+export default WebSocketBase;
