@@ -11,7 +11,7 @@ type Price = string;
 type Quantity = string;
 type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
 
-export interface BookTickerUpdateEvent {
+export interface BookTickerEvent {
   u: number;                    // order book updateId
   s: Symbol;                    // symbol
   b: Price;                     // best bid price
