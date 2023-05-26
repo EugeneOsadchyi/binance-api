@@ -5,7 +5,9 @@ interface WebSocketBase {
   on(event: 'open', listener: () => void): this;
   on(event: 'close', listener: (code: number, reason: Buffer) => void): this;
   on(event: 'error', listener: (error: Error) => void): this;
-  on(event: 'message', listener: (message: unknown) => void): this;
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  on(event: 'message', listener: (message: any) => void): this;
 }
 
 abstract class WebSocketBase extends EventEmitter {
