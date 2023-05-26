@@ -6,14 +6,13 @@ type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
 type OrderId = number;
 type ClientOrderId = string;
 type Asset = string;
-type Symbol = string;
 type Price = string;
 type Quantity = string;
 type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
 
 export interface BookTickerEvent {
   u: number;                    // order book updateId
-  s: Symbol;                    // symbol
+  s: string;                    // symbol
   b: Price;                     // best bid price
   B: Quantity;                  // best bid qty
   a: Price;                     // best ask price
@@ -44,7 +43,7 @@ export interface BalanceUpdateEvent {
 export interface OrderUpdateEvent {
   e: 'executionReport';         // Event type
   E: Timestamp;                 // Event time
-  s: Symbol;                    // Symbol
+  s: string;                    // Symbol
   c: ClientOrderId;             // Client order ID
   S: Side;                      // Side
   o: OrderType;                 // Order type

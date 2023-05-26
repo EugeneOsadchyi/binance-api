@@ -125,7 +125,7 @@ export interface ReplaceOrderParams extends OrderParams {
   cancelOrigClientOrderId?: string;
   cancelOrderId?: number;
   origClientOrderId: string;
-};
+}
 
 export interface AllOrdersParams {
   symbol: string;

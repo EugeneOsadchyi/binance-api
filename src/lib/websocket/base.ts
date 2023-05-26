@@ -5,18 +5,18 @@ interface WebSocketBase {
   on(event: 'open', listener: () => void): this;
   on(event: 'close', listener: (code: number, reason: Buffer) => void): this;
   on(event: 'error', listener: (error: Error) => void): this;
-  on(event: 'message', listener: (message: any) => void): this;
+  on(event: 'message', listener: (message: unknown) => void): this;
 }
 
 abstract class WebSocketBase extends EventEmitter {
   protected ws?: WebSocket;
-  protected reconnectInterval: number = 500;
-  protected reconnectAttempts: number = 3;
-  protected reconnectCount: number = 0;
+  protected reconnectInterval = 500;
+  protected reconnectAttempts = 3;
+  protected reconnectCount = 0;
 
-  protected CONNECTION_CLOSED_BY_APP: number = 4000;
+  protected CONNECTION_CLOSED_BY_APP = 4000;
 
-  public abstract getBaseURL(): string
+  public abstract getBaseURL(): string;
 
   protected connect() {
     this.ws = new WebSocket(this.getBaseURL());
@@ -39,8 +39,8 @@ abstract class WebSocketBase extends EventEmitter {
     this.ws = undefined;
   }
 
-  protected sendMessage(message: any) {
-    if (this.ws && this.ws.readyState !== WebSocket.OPEN) {
+  protected sendMessage(message: unknown) {
+    if (!this.ws || this.ws.readyState !== WebSocket.OPEN) {
       setTimeout(() => {
         this.sendMessage(message);
       }, 100);
@@ -48,7 +48,7 @@ abstract class WebSocketBase extends EventEmitter {
       return;
     }
 
-    this.ws!.send(JSON.stringify(message));
+    this.ws.send(JSON.stringify(message));
   }
 
   protected onOpen() {
@@ -81,7 +81,11 @@ abstract class WebSocketBase extends EventEmitter {
   }
 
   protected onPing() {
-    this.ws!.ping();
+    if (!this.ws) {
+      throw new Error('Calling onPing with no websocket');
+    }
+
+    this.ws.ping();
   }
 }
 

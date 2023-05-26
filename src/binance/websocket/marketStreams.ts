@@ -3,14 +3,21 @@ import WebSocketBase from '../../lib/websocket/base';
 const PRODUCTION_URL = 'wss://stream.binance.com:9443/ws';
 const TESTNET_URL = 'wss://testnet.binance.vision/ws';
 
-interface StreamPayload {
-  method: 'SUBSCRIBE' | 'UNSUBSCRIBE' | 'LIST_SUBSCRIPTIONS';
-  params?: string[];
+interface StreamListSubscriptionsPayload {
+  method: 'LIST_SUBSCRIPTIONS';
   id: number;
 }
 
+interface StreamSubscriptionPayload {
+  method: 'SUBSCRIBE' | 'UNSUBSCRIBE';
+  params: string[];
+  id: number;
+}
+
+type StreamPayload = StreamListSubscriptionsPayload | StreamSubscriptionPayload;
+
 export default class MarketStreams extends WebSocketBase {
-  private websocketId: number = 0;
+  private websocketId = 0;
   private subscriptions: Set<string> = new Set();
   private websocketMessageIdToSubscription: Map<number, StreamPayload> = new Map();
 
@@ -79,9 +86,9 @@ export default class MarketStreams extends WebSocketBase {
         this.websocketMessageIdToSubscription.delete(json.id);
 
         if (subscription.method === 'SUBSCRIBE') {
-          this.subscriptions.add(subscription.params![0]);
+          this.subscriptions.add(subscription.params[0]);
         } else if (subscription.method === 'UNSUBSCRIBE') {
-          this.subscriptions.delete(subscription.params![0]);
+          this.subscriptions.delete(subscription.params[0]);
         } else if (subscription.method === 'LIST_SUBSCRIPTIONS') {
           this.subscriptions = new Set(json.result);
         }

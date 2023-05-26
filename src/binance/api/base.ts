@@ -35,32 +35,28 @@ export default class BinanceBase extends Base {
     return this.isTestnet ? FUTURES_TESTNET_URL : FUTURES_URL;
   }
 
-  public publicRequest(method: string, path: string, params: any = {}) {
+  public publicRequest(method: string, path: string, params: object = {}) {
     return this.request(method, path, { query: buildQueryString(params) });
   }
 
-  public signedRequest(method: string, path: string, params: any = {}) {
+  public signedRequest(method: string, path: string, params: object = {}) {
     const timestamp = Date.now();
 
-    const queryString = buildQueryString({ ...params, timestamp })
+    const queryString = buildQueryString({ ...params, timestamp });
 
     const signature = createHmac('sha256', this.secretKey)
       .update(queryString)
       .digest('hex');
 
     return this.request(method, path, {
-      headers: {
-        'X-MBX-APIKEY': this.apiKey,
-      },
+      headers: { 'X-MBX-APIKEY': this.apiKey },
       query: `${queryString}&signature=${signature}`,
     });
   }
 
-  public userStreamRequest(method: string, path: string, params: any = {}) {
+  public userStreamRequest(method: string, path: string, params: object = {}) {
     return this.request(method, path, {
-      headers: {
-        'X-MBX-APIKEY': this.apiKey,
-      },
+      headers: { 'X-MBX-APIKEY': this.apiKey },
       query: buildQueryString(params),
     });
   }

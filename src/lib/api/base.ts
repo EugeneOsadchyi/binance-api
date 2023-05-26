@@ -13,15 +13,13 @@ export default abstract class Base {
 
     const requestInit: RequestInit = {
       method,
-      headers: {
-        ...options.headers,
-      },
+      headers: { ...options.headers },
     };
 
     let queryString = '';
 
     if (typeof options.query == 'object') {
-      queryString = buildQueryString(options.query)
+      queryString = buildQueryString(options.query);
     } else if (typeof options.query == 'string') {
       queryString = options.query;
     }

@@ -7,7 +7,7 @@ const TESTNET_URL = 'wss://testnet.binance.vision/ws';
 const LISTEN_KEY_RENEW_INTERVAL = 1000 * 60 * 30;
 
 export default class UserDataStreams extends WebSocketBase {
-  public isTestnet: boolean = false;
+  public isTestnet = false;
   public binanceSpotClient: Spot;
   private listenKeyRenewInterval?: NodeJS.Timeout;
   private listenKey?: string;

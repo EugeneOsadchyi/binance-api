@@ -1,15 +1,14 @@
 type Timestamp = number;
 type Side = 'BUY' | 'SELL';
 type PositionSide = 'LONG' | 'SHORT' | 'BOTH';
-type OrderType = 'LIMIT' | 'MARKET' | 'STOP' | 'STOP_MARKET' | 'TAKE_PROFIT' | 'TAKE_PROFIT_MARKET' | 'TRAILING_STOP_MARKET'
-type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'REJECTED' | 'EXPIRED'
+type OrderType = 'LIMIT' | 'MARKET' | 'STOP' | 'STOP_MARKET' | 'TAKE_PROFIT' | 'TAKE_PROFIT_MARKET' | 'TRAILING_STOP_MARKET';
+type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'REJECTED' | 'EXPIRED';
 type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
 type WorkingType = 'MARK_PRICE' | 'CONTRACT_PRICE';
-type ResponseType = 'ACK' |'RESULT'
+type _ResponseType = 'ACK' |'RESULT';
 type OrderId = number;
 type ClientOrderId = string;
 type Asset = string;
-type Symbol = string;
 type Price = string;
 type Quantity = string;
 
@@ -53,7 +52,7 @@ export interface AccountInformationAsset {
 }
 
 export interface AccountInformationPosition {
-  symbol: Symbol;                     // symbol
+  symbol: string;                     // symbol
   initialMargin: string;              // initial margin required with current mark price
   maintMargin: string;                // maintenance margin required
   unrealizedProfit: Price;            // unrealized profit
@@ -87,7 +86,7 @@ export interface OpenOrder {
   status: OrderStatus;
   stopPrice: Price;                 // please ignore when order type is TRAILING_STOP_MARKET
   closePosition: false;             // if Close-All
-  symbol: Symbol;
+  symbol: string;
   time: Timestamp;                  // order time
   timeInForce: TimeInForce;
   type: OrderType;
