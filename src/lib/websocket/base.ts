@@ -18,7 +18,7 @@ abstract class WebSocketBase extends EventEmitter {
 
   protected CONNECTION_CLOSED_BY_APP = 4000;
 
-  public abstract getBaseURL(): string;
+  protected abstract getBaseURL(): string;
 
   protected connect() {
     this.ws = new WebSocket(this.getBaseURL());

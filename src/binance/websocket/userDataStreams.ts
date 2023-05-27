@@ -1,26 +1,21 @@
-import WebSocketBase from '../../lib/websocket/base';
+import BinanceWebsocketBase, { BinanceWebsocketOptions } from './base';
 import Spot from '../api/spot';
-
-const PRODUCTION_URL = 'wss://stream.binance.com:9443/ws';
-const TESTNET_URL = 'wss://testnet.binance.vision/ws';
 
 const LISTEN_KEY_RENEW_INTERVAL = 1000 * 60 * 30;
 
-export default class UserDataStreams extends WebSocketBase {
-  public isTestnet = false;
+export default class UserDataStreams extends BinanceWebsocketBase {
   public binanceSpotClient: Spot;
   private listenKeyRenewInterval?: NodeJS.Timeout;
   private listenKey?: string;
 
-  constructor(binanceSpotClient: Spot, isTestnet = false) {
-    super();
+  constructor(binanceSpotClient: Spot, options?: BinanceWebsocketOptions) {
+    super(options);
 
     this.binanceSpotClient = binanceSpotClient;
-    this.isTestnet = isTestnet;
   }
 
   public getBaseURL(): string {
-    return (this.isTestnet ? TESTNET_URL : PRODUCTION_URL) + '/' + this.listenKey;
+    return super.getBaseURL() + '/ws/' + this.listenKey;
   }
 
   public async subscribe() {

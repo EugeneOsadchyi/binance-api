@@ -28,7 +28,15 @@ export default class BinanceBase extends Base {
   }
 
   public getSpotBaseURL() {
-    return this.isTestnet ? TESTNET_URL : PRODUCTION_URL;
+    return this.isTestnet ? this.getTestnetURL() : this.getProductionURL();
+  }
+
+  protected getProductionURL() {
+    return PRODUCTION_URL;
+  }
+
+  protected getTestnetURL() {
+    return TESTNET_URL;
   }
 
   public getFuturesBaseURL() {

@@ -1,7 +1,6 @@
-import WebSocketBase from '../../lib/websocket/base';
+import BinanceWebsocketBase from './base';
 
-const PRODUCTION_URL = 'wss://stream.binance.com:9443/ws';
-const TESTNET_URL = 'wss://testnet.binance.vision/ws';
+const PRODUCTION_URL = 'wss://data-stream.binance.vision';
 
 interface StreamListSubscriptionsPayload {
   method: 'LIST_SUBSCRIPTIONS';
@@ -16,21 +15,17 @@ interface StreamSubscriptionPayload {
 
 type StreamPayload = StreamListSubscriptionsPayload | StreamSubscriptionPayload;
 
-export default class MarketStreams extends WebSocketBase {
+export default class MarketStreams extends BinanceWebsocketBase {
   private websocketId = 0;
   private subscriptions: Set<string> = new Set();
   private websocketMessageIdToSubscription: Map<number, StreamPayload> = new Map();
 
-  private isTestnet: boolean;
-
-  constructor(isTestnet = false) {
-    super();
-
-    this.isTestnet = isTestnet;
+  protected getProductionURL() {
+    return PRODUCTION_URL;
   }
 
-  public getBaseURL() {
-    return this.isTestnet ? TESTNET_URL : PRODUCTION_URL;
+  protected getBaseURL(): string {
+    return super.getBaseURL() + '/stream';
   }
 
   public subscribe(path: string) {
