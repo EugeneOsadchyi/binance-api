@@ -1,14 +1,14 @@
-type Timestamp = number;
-type Side = 'BUY' | 'SELL';
-type OrderType = 'LIMIT' | 'LIMIT_MAKER' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT';
-type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
-type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
-type OrderId = number;
-type ClientOrderId = string;
-type Asset = string;
-type Price = string;
-type Quantity = string;
-type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
+export type Timestamp = number;
+export type Side = 'BUY' | 'SELL';
+export type OrderType = 'LIMIT' | 'LIMIT_MAKER' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT';
+export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
+export type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
+export type OrderId = number;
+export type ClientOrderId = string;
+export type Asset = string;
+export type Price = string;
+export type Quantity = string;
+export type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
 
 export interface BookTickerEvent {
   u: number;                    // order book updateId
