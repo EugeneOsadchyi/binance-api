@@ -6,7 +6,8 @@
   "scripts": {
     "lint": "eslint ./src",
     "lint:fix": "npm run lint -- --fix",
-    "build": "tsc",
+    "build": "npm run build:clean && tsc",
+    "build:clean": "rm -rf ./lib",
     "prepare": "npm run build"
   },
   "files": [

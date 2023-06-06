@@ -132,7 +132,7 @@ export interface AllOrdersParams {
   orderId?: number;
   startTime?: number;
   endTime?: number;
-  limit?: number;
+  limit: number;
 }
 
 export interface OpenOrder {
