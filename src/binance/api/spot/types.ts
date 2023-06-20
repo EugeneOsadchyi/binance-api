@@ -32,7 +32,7 @@ export type NewOrderResponse = NewOrderOrderResponseAck | NewOrderOrderResponseR
 export interface NewOrderOrderResponseAck {
   symbol: string;
   orderId: number;
-  orderListId: -1, //Unless OCO, value will be -1
+  orderListId: -1; //Unless OCO, value will be -1
   clientOrderId: string;
   transactTime: Timestamp;
 }
@@ -206,4 +206,62 @@ export interface SpotUserAsset {
   withdrawing: string;
   ipoable: string;
   btcValuation: string;
+}
+
+export interface DepositHistoryParams {
+  coin?: string;
+  status?: number;
+  startTime?: number;
+  endTime?: number;
+  offset?: number;
+  limit?: number;
+  recvWindow?: number;
+  txId?: string;
+}
+
+export interface DepositHistory {
+  id: string;
+  amount: string;
+  coin: string;
+  network: string;
+  status: number;
+  address: string;
+  addressTag: string;
+  txId: string;
+  insertTime: Timestamp;
+  transferType: number;
+  confirmTimes: string;
+  unlockConfirm: number;
+  walletType: number;
+}
+
+export interface WithdrawHistoryParams {
+  coin?: string;
+  withdrawOrderId?: string;
+  status: number;
+  startTime: number;
+  endTime: number;
+  offset: number;
+  limit: number;
+  recvWindow: number;
+  txId?: string;
+}
+
+export interface WithdrawHistory {
+  id: string;
+  amount: string;
+  transactionFee: string;
+  coin: string;
+  status: number;
+  address: string;
+  txId: string;
+  applyTime: string;
+  network: string;
+  transferType: number
+  withdrawOrderId: string;
+  info: string;
+  confirmNo: number;
+  walletType: number;
+  txKey: string;
+  completeTime: string;
 }
