@@ -1,14 +1,50 @@
 export type Timestamp = number;
-export type Side = 'BUY' | 'SELL';
-export type OrderType = 'LIMIT' | 'LIMIT_MAKER' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT';
-export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
-export type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
+
+enum OrderSide {
+  BUY = 'BUY',
+  SELL = 'SELL',
+}
+
+enum OrderType {
+  LIMIT = 'LIMIT',
+  LIMIT_MAKER = 'LIMIT_MAKER',
+  MARKET = 'MARKET',
+  STOP_LOSS = 'STOP_LOSS',
+  STOP_LOSS_LIMIT = 'STOP_LOSS_LIMIT',
+  TAKE_PROFIT = 'TAKE_PROFIT',
+  TAKE_PROFIT_LIMIT = 'TAKE_PROFIT_LIMIT',
+}
+
+enum OrderStatus {
+  NEW = 'NEW',
+  PARTIALLY_FILLED = 'PARTIALLY_FILLED',
+  FILLED = 'FILLED',
+  CANCELED = 'CANCELED',
+  PENDING_CANCEL = 'PENDING_CANCEL',
+  REJECTED = 'REJECTED',
+  EXPIRED = 'EXPIRED',
+  EXPIRED_IN_MATCH = 'EXPIRED_IN_MATCH',
+}
+
+enum TimeInForce {
+  GTC = 'GTC',
+  IOC = 'IOC',
+  FOK = 'FOK',
+  GTX = 'GTX',
+}
+
 export type OrderId = number;
 export type ClientOrderId = string;
 export type Asset = string;
 export type Price = string;
 export type Quantity = string;
-export type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
+
+enum SelfTradePreventionMode {
+  EXPIRE_TAKER = 'EXPIRE_TAKER',
+  EXPIRE_MAKER = 'EXPIRE_MAKER',
+  EXPIRE_BOTH = 'EXPIRE_BOTH',
+  NONE = 'NONE',
+}
 
 export interface BookTickerEvent {
   u: number;                    // order book updateId
@@ -45,7 +81,7 @@ export interface OrderUpdateEvent {
   E: Timestamp;                 // Event time
   s: string;                    // Symbol
   c: ClientOrderId;             // Client order ID
-  S: Side;                      // Side
+  S: OrderSide;                 // Side
   o: OrderType;                 // Order type
   f: TimeInForce;               // Time in force
   q: Quantity;                  // Order quantity
