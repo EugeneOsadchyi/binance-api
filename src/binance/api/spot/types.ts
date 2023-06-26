@@ -1,31 +1,31 @@
 
 export type Timestamp = number;
 
-enum OrderSide {
+export enum OrderSide {
   BUY = 'BUY',
   SELL = 'SELL',
 }
 
-enum TimeInForce {
+export enum TimeInForce {
   GTC = 'GTC',
   IOC = 'IOC',
   FOK = 'FOK',
 }
 
-enum NewOrderResponseType {
+export enum NewOrderResponseType {
   ACK = 'ACK',
   RESULT = 'RESULT',
   FULL = 'FULL',
 }
 
-enum SelfTradePreventionMode {
+export enum SelfTradePreventionMode {
   EXPIRE_TAKER = 'EXPIRE_TAKER',
   EXPIRE_MAKER = 'EXPIRE_MAKER',
   EXPIRE_BOTH = 'EXPIRE_BOTH',
   NONE = 'NONE',
 }
 
-enum OrderType {
+export enum OrderType {
   LIMIT = 'LIMIT',
   MARKET = 'MARKET',
   STOP_LOSS = 'STOP_LOSS',
@@ -35,7 +35,7 @@ enum OrderType {
   LIMIT_MAKER = 'LIMIT_MAKER',
 }
 
-enum OrderStatus {
+export enum OrderStatus {
   NEW = 'NEW',
   PARTIALLY_FILLED = 'PARTIALLY_FILLED',
   FILLED = 'FILLED',
@@ -46,12 +46,12 @@ enum OrderStatus {
   EXPIRED_IN_MATCH = 'EXPIRED_IN_MATCH',
 }
 
-enum WorkingType {
+export enum WorkingType {
   MARK_PRICE = 'MARK_PRICE',
   CONTRACT_PRICE = 'CONTRACT_PRICE',
 }
 
-enum PositionSide {
+export enum PositionSide {
   LONG = 'LONG',
   SHORT = 'SHORT',
   BOTH = 'BOTH',
