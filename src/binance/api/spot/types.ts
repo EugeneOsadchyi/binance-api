@@ -1,13 +1,61 @@
 
 export type Timestamp = number;
-export type OrderSide = 'BUY' | 'SELL';
-export type TimeInForce = 'GTC' | 'IOC' | 'FOK';
-export type NewOrderResponseType = 'ACK' | 'RESULT' | 'FULL';
-export type SelfTradePreventionMode = 'EXPIRE_TAKER' | 'EXPIRE_MAKER' | 'EXPIRE_BOTH' | 'NONE';
-export type OrderType = 'LIMIT' | 'MARKET' | 'STOP_LOSS' | 'STOP_LOSS_LIMIT' | 'TAKE_PROFIT' | 'TAKE_PROFIT_LIMIT' | 'LIMIT_MAKER';
-export type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'PENDING_CANCEL' | 'REJECTED' | 'EXPIRED' | 'EXPIRED_IN_MATCH';
-export type WorkingType = 'MARK_PRICE' | 'CONTRACT_PRICE';
-export type PositionSide = 'BOTH' | 'LONG' | 'SHORT';
+
+enum OrderSide {
+  BUY = 'BUY',
+  SELL = 'SELL',
+}
+
+enum TimeInForce {
+  GTC = 'GTC',
+  IOC = 'IOC',
+  FOK = 'FOK',
+}
+
+enum NewOrderResponseType {
+  ACK = 'ACK',
+  RESULT = 'RESULT',
+  FULL = 'FULL',
+}
+
+enum SelfTradePreventionMode {
+  EXPIRE_TAKER = 'EXPIRE_TAKER',
+  EXPIRE_MAKER = 'EXPIRE_MAKER',
+  EXPIRE_BOTH = 'EXPIRE_BOTH',
+  NONE = 'NONE',
+}
+
+enum OrderType {
+  LIMIT = 'LIMIT',
+  MARKET = 'MARKET',
+  STOP_LOSS = 'STOP_LOSS',
+  STOP_LOSS_LIMIT = 'STOP_LOSS_LIMIT',
+  TAKE_PROFIT = 'TAKE_PROFIT',
+  TAKE_PROFIT_LIMIT = 'TAKE_PROFIT_LIMIT',
+  LIMIT_MAKER = 'LIMIT_MAKER',
+}
+
+enum OrderStatus {
+  NEW = 'NEW',
+  PARTIALLY_FILLED = 'PARTIALLY_FILLED',
+  FILLED = 'FILLED',
+  CANCELED = 'CANCELED',
+  PENDING_CANCEL = 'PENDING_CANCEL',
+  REJECTED = 'REJECTED',
+  EXPIRED = 'EXPIRED',
+  EXPIRED_IN_MATCH = 'EXPIRED_IN_MATCH',
+}
+
+enum WorkingType {
+  MARK_PRICE = 'MARK_PRICE',
+  CONTRACT_PRICE = 'CONTRACT_PRICE',
+}
+
+enum PositionSide {
+  LONG = 'LONG',
+  SHORT = 'SHORT',
+  BOTH = 'BOTH',
+}
 
 export interface OrderParams {
   symbol: string;

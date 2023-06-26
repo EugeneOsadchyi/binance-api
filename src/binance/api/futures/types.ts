@@ -1,11 +1,52 @@
 type Timestamp = number;
-type Side = 'BUY' | 'SELL';
-type PositionSide = 'LONG' | 'SHORT' | 'BOTH';
-type OrderType = 'LIMIT' | 'MARKET' | 'STOP' | 'STOP_MARKET' | 'TAKE_PROFIT' | 'TAKE_PROFIT_MARKET' | 'TRAILING_STOP_MARKET';
-type OrderStatus = 'NEW' | 'PARTIALLY_FILLED' | 'FILLED' | 'CANCELED' | 'REJECTED' | 'EXPIRED';
-type TimeInForce = 'GTC' | 'IOC' | 'FOK' | 'GTX';
-type WorkingType = 'MARK_PRICE' | 'CONTRACT_PRICE';
-type _ResponseType = 'ACK' |'RESULT';
+
+enum PositionSide {
+  LONG = 'LONG',
+  SHORT = 'SHORT',
+  BOTH = 'BOTH',
+}
+
+enum OrderSide {
+  BUY = 'BUY',
+  SELL = 'SELL',
+}
+
+enum OrderType {
+  LIMIT = 'LIMIT',
+  MARKET = 'MARKET',
+  STOP = 'STOP',
+  STOP_MARKET = 'STOP_MARKET',
+  TAKE_PROFIT = 'TAKE_PROFIT',
+  TAKE_PROFIT_MARKET = 'TAKE_PROFIT_MARKET',
+  TRAILING_STOP_MARKET = 'TRAILING_STOP_MARKET',
+}
+
+enum OrderStatus {
+  NEW = 'NEW',
+  PARTIALLY_FILLED = 'PARTIALLY_FILLED',
+  FILLED = 'FILLED',
+  CANCELED = 'CANCELED',
+  REJECTED = 'REJECTED',
+  EXPIRED = 'EXPIRED',
+}
+
+enum TimeInForce {
+  GTC = 'GTC',
+  IOC = 'IOC',
+  FOK = 'FOK',
+  GTX = 'GTX',
+}
+
+enum WorkingType {
+  MARK_PRICE = 'MARK_PRICE',
+  CONTRACT_PRICE = 'CONTRACT_PRICE',
+}
+
+enum _ResponseType {
+  ACK = 'ACK',
+  RESULT = 'RESULT',
+}
+
 type OrderId = number;
 type ClientOrderId = string;
 type Asset = string;
@@ -81,7 +122,7 @@ export interface OpenOrder {
   origType: OrderType;
   price: Price;
   reduceOnly: boolean;
-  side: Side;
+  side: OrderSide;
   positionSide: PositionSide;
   status: OrderStatus;
   stopPrice: Price;                 // please ignore when order type is TRAILING_STOP_MARKET
