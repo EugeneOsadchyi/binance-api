@@ -180,10 +180,15 @@ export interface AllOrdersParams {
   orderId?: number;
   startTime?: number;
   endTime?: number;
-  limit: number;
+  limit?: number;
 }
 
-export interface OpenOrder {
+
+export interface OpenOrder extends Order {
+  status: OrderStatus.NEW;
+}
+
+export interface Order {
   symbol: string;
   orderId: number;
   orderListId: -1; //Unless OCO, the value will always be -1
@@ -192,7 +197,7 @@ export interface OpenOrder {
   origQty: string;
   executedQty: string;
   cummulativeQuoteQty: string;
-  status: 'NEW';
+  status: OrderStatus;
   timeInForce: TimeInForce;
   type: OrderType;
   side: OrderSide;
@@ -200,7 +205,7 @@ export interface OpenOrder {
   icebergQty: string;
   time: Timestamp;
   updateTime: Timestamp;
-  isWorking: true;
+  isWorking: boolean;
   workingTime: Timestamp;
   origQuoteOrderQty: string;
   selfTradePreventionMode: SelfTradePreventionMode;
