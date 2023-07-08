@@ -5,7 +5,7 @@ export enum OrderSideEnum {
   BUY = 'BUY',
   SELL = 'SELL',
 }
-export type OrderSide = keyof typeof OrderStatusEnum;
+export type OrderSide = keyof typeof OrderSideEnum;
 
 export enum TimeInForceEnum {
   GTC = 'GTC',
