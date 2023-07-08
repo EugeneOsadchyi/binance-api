@@ -1,11 +1,12 @@
 export type Timestamp = number;
 
-export enum OrderSide {
+export enum OrderSideEnum {
   BUY = 'BUY',
   SELL = 'SELL',
 }
+export type OrderSide = keyof typeof OrderSideEnum;
 
-export enum OrderType {
+export enum OrderTypeEnum {
   LIMIT = 'LIMIT',
   LIMIT_MAKER = 'LIMIT_MAKER',
   MARKET = 'MARKET',
@@ -14,8 +15,9 @@ export enum OrderType {
   TAKE_PROFIT = 'TAKE_PROFIT',
   TAKE_PROFIT_LIMIT = 'TAKE_PROFIT_LIMIT',
 }
+export type OrderType = keyof typeof OrderTypeEnum;
 
-export enum OrderStatus {
+export enum OrderStatusEnum {
   NEW = 'NEW',
   PARTIALLY_FILLED = 'PARTIALLY_FILLED',
   FILLED = 'FILLED',
@@ -25,13 +27,15 @@ export enum OrderStatus {
   EXPIRED = 'EXPIRED',
   EXPIRED_IN_MATCH = 'EXPIRED_IN_MATCH',
 }
+export type OrderStatus = keyof typeof OrderStatusEnum;
 
-export enum TimeInForce {
+export enum TimeInForceEnum {
   GTC = 'GTC',
   IOC = 'IOC',
   FOK = 'FOK',
   GTX = 'GTX',
 }
+export type TimeInForce = keyof typeof TimeInForceEnum;
 
 export type OrderId = number;
 export type ClientOrderId = string;

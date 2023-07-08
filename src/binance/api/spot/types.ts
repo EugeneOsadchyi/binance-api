@@ -1,31 +1,35 @@
 
 export type Timestamp = number;
 
-export enum OrderSide {
+export enum OrderSideEnum {
   BUY = 'BUY',
   SELL = 'SELL',
 }
+export type OrderSide = keyof typeof OrderStatusEnum;
 
-export enum TimeInForce {
+export enum TimeInForceEnum {
   GTC = 'GTC',
   IOC = 'IOC',
   FOK = 'FOK',
 }
+export type TimeInForce = keyof typeof TimeInForceEnum;
 
-export enum NewOrderResponseType {
+export enum NewOrderResponseTypeEnum {
   ACK = 'ACK',
   RESULT = 'RESULT',
   FULL = 'FULL',
 }
+export type NewOrderResponseType = keyof typeof NewOrderResponseTypeEnum;
 
-export enum SelfTradePreventionMode {
+export enum SelfTradePreventionModeEnum {
   EXPIRE_TAKER = 'EXPIRE_TAKER',
   EXPIRE_MAKER = 'EXPIRE_MAKER',
   EXPIRE_BOTH = 'EXPIRE_BOTH',
   NONE = 'NONE',
 }
+export type SelfTradePreventionMode = keyof typeof SelfTradePreventionModeEnum;
 
-export enum OrderType {
+export enum OrderTypeEnum {
   LIMIT = 'LIMIT',
   MARKET = 'MARKET',
   STOP_LOSS = 'STOP_LOSS',
@@ -34,8 +38,9 @@ export enum OrderType {
   TAKE_PROFIT_LIMIT = 'TAKE_PROFIT_LIMIT',
   LIMIT_MAKER = 'LIMIT_MAKER',
 }
+export type OrderType = keyof typeof OrderTypeEnum;
 
-export enum OrderStatus {
+export enum OrderStatusEnum {
   NEW = 'NEW',
   PARTIALLY_FILLED = 'PARTIALLY_FILLED',
   FILLED = 'FILLED',
@@ -45,17 +50,20 @@ export enum OrderStatus {
   EXPIRED = 'EXPIRED',
   EXPIRED_IN_MATCH = 'EXPIRED_IN_MATCH',
 }
+export type OrderStatus = keyof typeof OrderStatusEnum;
 
-export enum WorkingType {
+export enum WorkingTypeEnum {
   MARK_PRICE = 'MARK_PRICE',
   CONTRACT_PRICE = 'CONTRACT_PRICE',
 }
+export type WorkingType = keyof typeof WorkingTypeEnum;
 
-export enum PositionSide {
+export enum PositionSideEnum {
   LONG = 'LONG',
   SHORT = 'SHORT',
   BOTH = 'BOTH',
 }
+export type PositionSide = keyof typeof PositionSideEnum;
 
 export interface OrderParams {
   symbol: string;
@@ -185,7 +193,7 @@ export interface AllOrdersParams {
 
 
 export interface OpenOrder extends Order {
-  status: OrderStatus.NEW;
+  status: OrderStatusEnum.NEW;
 }
 
 export interface Order {

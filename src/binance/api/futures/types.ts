@@ -1,17 +1,19 @@
 type Timestamp = number;
 
-export enum PositionSide {
+export enum PositionSideEnum {
   LONG = 'LONG',
   SHORT = 'SHORT',
   BOTH = 'BOTH',
 }
+export type PositionSide = keyof typeof PositionSideEnum;
 
-export enum OrderSide {
+export enum OrderSideEnum {
   BUY = 'BUY',
   SELL = 'SELL',
 }
+export type OrderSide = keyof typeof OrderSideEnum;
 
-export enum OrderType {
+export enum OrderTypeEnum {
   LIMIT = 'LIMIT',
   MARKET = 'MARKET',
   STOP = 'STOP',
@@ -20,8 +22,9 @@ export enum OrderType {
   TAKE_PROFIT_MARKET = 'TAKE_PROFIT_MARKET',
   TRAILING_STOP_MARKET = 'TRAILING_STOP_MARKET',
 }
+export type OrderType = keyof typeof OrderTypeEnum;
 
-export enum OrderStatus {
+export enum OrderStatusEnum {
   NEW = 'NEW',
   PARTIALLY_FILLED = 'PARTIALLY_FILLED',
   FILLED = 'FILLED',
@@ -29,23 +32,27 @@ export enum OrderStatus {
   REJECTED = 'REJECTED',
   EXPIRED = 'EXPIRED',
 }
+export type OrderStatus = keyof typeof OrderStatusEnum;
 
-export enum TimeInForce {
+export enum TimeInForceEnum {
   GTC = 'GTC',
   IOC = 'IOC',
   FOK = 'FOK',
   GTX = 'GTX',
 }
+export type TimeInForce = keyof typeof TimeInForceEnum;
 
-export enum WorkingType {
+export enum WorkingTypeEnum {
   MARK_PRICE = 'MARK_PRICE',
   CONTRACT_PRICE = 'CONTRACT_PRICE',
 }
+export type WorkingType = keyof typeof WorkingTypeEnum;
 
-export enum _ResponseType {
+export enum ResponseTypeEnum {
   ACK = 'ACK',
   RESULT = 'RESULT',
 }
+export type ResponseType = keyof typeof ResponseTypeEnum;
 
 type OrderId = number;
 type ClientOrderId = string;
